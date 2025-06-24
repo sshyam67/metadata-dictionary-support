@@ -1,0 +1,5 @@
+| Object        | Field Name    | Type   | Owner   | Accountable | Consulted | Informed |
+| ------------- | ------------- | ------ | ------- | ----------- | --------- | -------- |
+| Customer      | Customer\_ID  | INT    | DataMgr | Compliance  | Sales     | IT       |
+| Product       | Product\_Name | TEXT   | PM      | Quality     | Marketing | Legal    |
+| Sales\_Region | Region\_Code  | STRING | Ops     | CEO         | Finance   | HR       |
