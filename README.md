@@ -1,22 +1,35 @@
-# Metadata Dictionary Support (Freelance Simulation)
+# 🧠 Metadata Dictionary Support Tool
 
-A simulated enterprise metadata dictionary system built using **Python** and **SQL**, designed to manage business metadata such as objects, field definitions, picklists, and regulatory mappings.
+This freelance-style simulation project helps automate the generation of a **metadata dictionary** from SQL Server tables using Python and Excel. It is designed for business analysts, data stewards, or compliance teams needing a fast way to document their databases.
 
-## 📌 Features
-- Define metadata for 20+ regulatory objects
-- Auto-generate RACI matrices and data lineage
-- Simulate DORA compliance alignment
-- Onboard templates and audit report generation
-- Field-level data dictionary management
+---
 
-## 🛠 Tools Used
-- Python
+## 🚀 Features
+
+- ✅ Connects to SQL Server and extracts table metadata
+- ✅ Auto-generates metadata dictionary in Excel format
+- ✅ Captures column names, data types, nullability, default values, and more
+- ✅ Clean formatting for business use
+- ✅ Great for internal data documentation and governance workflows
+
+---
+
+## 📊 Sample Use Case (Freelance Simulation)
+
+Imagine a freelance client who needs documentation for 20+ SQL tables used in their financial reporting dashboard. Instead of manually documenting each column, this tool automates the entire process — saving hours of work and improving consistency.
+
+---
+
+## 🧰 Tech Stack
+
+- Python 3.x
 - Pandas
+- pyodbc
 - openpyxl
-- SQLite3
-- Excel for source metadata
 
-## 📁 Files
-- `metadata_dictionary.py`: Python script for reading, validating, and transforming metadata
-- `sample_metadata.xlsx`: Sample Excel input with metadata fields and definitions
-- `requirements.txt`: Python dependencies
+---
+
+## 📦 Installation
+
+```bash
+pip install pandas pyodbc openpyxl
