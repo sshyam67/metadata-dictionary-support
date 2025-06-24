@@ -1,2 +1,85 @@
-pandas
-openpyxl
+⚙️ Usage
+Update the SQL Server connection info in metadata_tool.py
+
+Run the script:
+
+bash
+Copy
+Edit
+python metadata_tool.py
+It will generate metadata_dictionary.xlsx in your folder
+
+🧪 Example Output
+Column Name	Data Type	Is Nullable	Default Value	Max Length
+customer_id	INT	NO	NULL	4
+email	VARCHAR	YES	NULL	255
+
+📂 File Structure
+cpp
+Copy
+Edit
+metadata-tool/
+├── metadata_tool.py
+├── README.md
+└── metadata_dictionary.xlsx (auto-generated)
+🤝 Contact
+For freelance collaboration or feedback, feel free to reach out at shyamsattire@gmail.com
+
+📄 License
+MIT License
+
+pgsql
+Copy
+Edit
+
+---
+
+### 🐍 `metadata_tool.py`
+
+```python
+import pyodbc
+import pandas as pd
+
+# 👉 STEP 1: SQL Server connection configuration
+server = 'your_server'
+database = 'your_database'
+username = 'your_username'
+password = 'your_password'
+driver = '{ODBC Driver 17 for SQL Server}'
+
+# 👉 STEP 2: Establish the connection
+conn_str = f"""
+DRIVER={driver};
+SERVER={server};
+DATABASE={database};
+UID={username};
+PWD={password}
+"""
+conn = pyodbc.connect(conn_str)
+cursor = conn.cursor()
+
+# 👉 STEP 3: Query metadata
+query = """
+SELECT 
+    c.name AS column_name,
+    t.name AS data_type,
+    c.max_length,
+    c.is_nullable,
+    c.default_object_id
+FROM sys.columns c
+JOIN sys.types t ON c.user_type_id = t.user_type_id
+WHERE c.object_id = OBJECT_ID('your_table_name')
+"""
+
+# 👉 STEP 4: Load into DataFrame
+df = pd.read_sql(query, conn)
+df['is_nullable'] = df['is_nullable'].apply(lambda x: 'YES' if x else 'NO')
+
+# 👉 STEP 5: Save to Excel
+df.to_excel("metadata_dictionary.xlsx", index=False)
+
+print("✅ Metadata dictionary generated successfully!")
+
+# Close connection
+cursor.close()
+conn.close()
